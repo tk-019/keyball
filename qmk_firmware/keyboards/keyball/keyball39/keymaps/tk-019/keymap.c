@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_SLSH  , KC_1     , KC_2     , KC_3     ,S(KC_MINS),                           S(KC_NUHS), KC_LEFT  , KC_PGUP  , KC_PGDN  , _______  ,
     KC_ESC   , KC_0     , KC_DOT   , KC_DEL   , KC_ENT   , KC_BSPC  ,      _______  , _______                                 , _______
   ),
-
+// 設定とマウス
   [3] = LAYOUT(
     RGB_TOG  , AML_TO   , AML_I50  , AML_D50  , _______  ,                            _______  , _______  , SSNP_HOR , SSNP_VRT , SSNP_FRE ,
     RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  , SCRL_DVI ,                            _______  , KC_BTN1  , KC_BTN3  , KC_BTN2  , _______  ,
@@ -124,5 +124,7 @@ combo_t key_combos[] = {
 #endif
 
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
-        set_auto_mouse_layer(3);
+void pointing_device_init_user(void) {
+    set_auto_mouse_enable(true);
+}
 #endif
