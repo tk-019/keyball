@@ -123,17 +123,6 @@ combo_t key_combos[] = {
 };
 #endif
 
-/* ───────── Auto-mouse layer ───────── */
-report_mouse_t pointing_device_task_user(report_mouse_t r){
-    if(r.x||r.y||r.h||r.v){ last_mouse_activity=timer_read(); if(!mouse_layer_active){layer_on(_MOUSE);mouse_layer_active=true;}}
-    return r;
-}
-void matrix_scan_user(void){
-    if(mouse_layer_active&&timer_elapsed(last_mouse_activity)>MOUSE_TIMEOUT){
-        layer_off(_MOUSE); mouse_layer_active=false;
-    }
-}
-
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
         set_auto_mouse_layer(3);
 #endif
