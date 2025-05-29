@@ -1,3 +1,3 @@
-RGBLIGHT_ENABLE = yes
-
-OLED_ENABLE = yes
+SRC += keymap.c
+COMBO_ENABLE = yes
+POINTING_DEVICE_ENABLE = yes
