@@ -378,7 +378,6 @@ static void rpc_set_cpi_invoke(void) {
 //////////////////////////////////////////////////////////////////////////////
 // OLED utility
 
-#ifdef OLED_ENABLE
 // clang-format off
 const char PROGMEM code_to_name[] = {
     'a', 'b', 'c', 'd', 'e', 'f',  'g', 'h', 'i',  'j',
@@ -389,6 +388,7 @@ const char PROGMEM code_to_name[] = {
     ',', '.', '/',
 };
 // clang-format on
+#ifdef OLED_ENABLE
 #endif
 
 void keyball_oled_render_ballinfo(void) {
