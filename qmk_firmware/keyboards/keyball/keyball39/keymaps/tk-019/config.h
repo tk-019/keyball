@@ -1,5 +1,8 @@
 #pragma once
 
-#define COMBO_COUNT 19   // 既存 2 + 追加 17
-#define COMBO_TERM 30
-#define TAPPING_TERM 200
+#define TAP_CODE_DELAY 5
+
+#define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#define AUTO_MOUSE_DEFAULT_LAYER 1
+
+#define TAPPING_TERM 150

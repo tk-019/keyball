@@ -1,4 +1,3 @@
-SRC += keymap.c
+OLED_ENABLE = yes
+VIA_ENABLE = yes
 COMBO_ENABLE = yes
-POINTING_DEVICE_ENABLE = yes
-EXTRAFLAGS += -Wno-error=unused-const-variable

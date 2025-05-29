@@ -1,100 +1,129 @@
+/*
+Copyright 2022 @Yowkees
+Copyright 2022 MURAOKA Taro (aka KoRoN, @kaoriya)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include QMK_KEYBOARD_H
 
-enum layer_names { _BASE, _NUM, _MOVE, _FUNC, _MOUSE };
-#define MOUSE_TIMEOUT 1000
+#include "quantum.h"
 
-static uint32_t last_mouse_activity = 0;
-static bool     mouse_layer_active  = false;
-
-/* ───────── BASE ───────── */
+// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_BASE] = LAYOUT_right_ball(
-/* ┌─── 左手 18 ───┐                        ┌──── 右手 18 ────┐ */
-  KC_Q,  KC_W, KC_E, KC_R, KC_T, KC_Y,            KC_U,   KC_I,   KC_O,    KC_P,    KC_L,    KC_ENT,
-  KC_A,  KC_S, KC_D, KC_F, KC_G, KC_H,            KC_J,   KC_K,   KC_LBRC, KC_RBRC, KC_QUOT, KC_BSPC,
-  KC_Z,  KC_X, KC_C, KC_V, KC_B, KC_N,            KC_M,   KC_COMM,KC_DOT,  MT(MOD_RSFT, KC_SLSH), KC_MINS,
-/* └─左親指3─┘                               └──右親指2──┘   */
-                   KC_ESC, KC_LALT, KC_LGUI,      MO(_NUM), MO(_MOVE)
-),
+  // keymap for default (VIA)
+  [0] = LAYOUT_universal(
+    KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
+    KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                            KC_H     , KC_J     , KC_K     , KC_L     , KC_ENT  ,
+    KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , LT(1,KC_M)     , KC_COMM  , KC_DOT   , KC_RSFT  ,
+    KC_ESC  , KC_LALT  , KC_LGUI
+    // 左親指
+    ,KC_LCTL, LT(1,KC_LNG2),LT(2,KC_SPC)
+    // 右親指
+    ,KC_BSPC,LT(2,KC_ENT),LT(3,KC_LNG1)
+    // 不要
+    ,_______,_______,_______
+    // 右下端
+    , KC_RSFT
+  ),
 
-/* ───────── NUM ───────── */
-[_NUM] = LAYOUT_right_ball(
-  _______, _______, _______, _______, _______, _______,    KC_P7,  KC_P8,  KC_P9,  _______, _______, _______,
-  _______, _______, _______, _______, _______, _______,    KC_P4,  KC_P5,  KC_P6,  _______, _______, _______,
-  _______, _______, _______, _______, _______, _______,    KC_P1,  KC_P2,  KC_P3,  KC_P0,  KC_DOT,  _______,
-                   _______, _______, _______,     _______, _______
-),
+  // functionと左移動
+  [1] = LAYOUT_universal(
+    KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_RBRC  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
+    KC_F5    , LGUI(KC_LEFT)  , S(KC_6)  ,LGUI(KC_RGHT), S(KC_8)  ,                           S(KC_INT1), KC_BTN1  , KC_PGUP  , KC_BTN2  , KC_SCLN  ,
+    S(KC_EQL),LALT(KC_LEFT),S(KC_7)   , LALT(KC_RGHT)  ,S(KC_RBRC),                            KC_LBRC  , KC_DLR   , KC_PGDN  , KC_BTN3  , KC_F11   ,
+    KC_INT1  , KC_EQL   , S(KC_3)  , _______  , _______  , _______  ,      TO(2)    , TO(0)    , _______  , KC_RALT  , KC_RGUI  , KC_F12
+  ),
 
-/* ───────── MOVE / FUNC / MOUSE ───────── (省略は空キー) */
-[_MOVE] = LAYOUT_right_ball(
-  _______, _______, _______, _______, _______, _______,    KC_HOME, KC_UP,   KC_END,  _______, _______, _______,
-  _______, _______, _______, _______, _______, _______,    KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
-                   _______, _______, _______,     _______, _______
-),
-[_FUNC] = LAYOUT_right_ball(
-  _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
-                   _______, _______, _______,     _______, _______
-),
-[_MOUSE] = LAYOUT_right_ball(
-  _______, _______, _______, _______, _______, _______,    _______, KC_MS_U, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______,    KC_MS_L, KC_MS_D, KC_MS_R, KC_BTN1, KC_BTN2, _______,
-  _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
-                   _______, _______, _______,     _______, _______
-)
+  // 右移動と左テンキー
+  [2] = LAYOUT_universal(
+    KC_TAB   , KC_7     , KC_8     , KC_9     , KC_MINS  ,                            KC_NUHS  , m_HOME  , KC_UP  , m_END  , KC_BSPC  ,
+   S(KC_QUOT), KC_4     , KC_5     , KC_6     ,S(KC_SCLN),                            S(KC_9)  , KC_LEFT  , KC_DOWN    , KC_RGHT  , KC_QUOT  ,
+    KC_SLSH  , KC_1     , KC_2     , KC_3     ,S(KC_MINS),                           S(KC_NUHS), KC_LEFT  , m_PGUP  , m_PGDN  , _______  ,
+    KC_ESC   , KC_0     , KC_DOT   , KC_DEL   , KC_ENT   , KC_BSPC  ,      _______  , _______  , _______  , _______  , _______  , _______
+  ),
+
+  [3] = LAYOUT_universal(
+    RGB_TOG  , AML_TO   , AML_I50  , AML_D50  , _______  ,                            _______  , _______  , SSNP_HOR , SSNP_VRT , SSNP_FRE ,
+    RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  , SCRL_DVI ,                            _______  , KC_BTN1  , KC_BTN3  , KC_BTN2  , _______  ,
+    RGB_RMOD , RGB_HUD  , RGB_SAD  , RGB_VAD  , SCRL_DVD ,                            CPI_D1K  , CPI_D100 , CPI_I100 , CPI_I1K  , KBC_SAVE ,
+    QK_BOOT  , KBC_RST  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , KBC_RST  , QK_BOOT
+  ),
 };
+// clang-format on
 
-/* ───────── Combos ───────── */
-/* ──────────  記号コンボ  ────────── */
-/* 座標は “a + H” のように 2 キー同時押し                  */
-/* 出力キーは US/JIS どちらでも動く一般キーコードで記述   */
+layer_state_t layer_state_set_user(layer_state_t state) {
+    // Auto enable scroll mode when the highest layer is 3
+    keyball_set_scroll_mode(get_highest_layer(state) == 2);
+    return state;
+}
 
-const uint16_t PROGMEM combo_ah[] = {KC_A, KC_H, COMBO_END};      // @
-const uint16_t PROGMEM combo_sh[] = {KC_S, KC_H, COMBO_END};      // #
-const uint16_t PROGMEM combo_dh[] = {KC_D, KC_H, COMBO_END};      // $
-const uint16_t PROGMEM combo_pg[] = {KC_P, KC_G, COMBO_END};      // %
-const uint16_t PROGMEM combo_ch[] = {KC_C, KC_H, COMBO_END};      // ^
-const uint16_t PROGMEM combo_eh[] = {KC_E, KC_H, COMBO_END};      // !
-const uint16_t PROGMEM combo_kG[] = {KC_K, KC_G, COMBO_END};      // *
-const uint16_t PROGMEM combo_jG[] = {KC_J, KC_G, COMBO_END};      // +
-const uint16_t PROGMEM combo_lG[] = {KC_L, KC_G, COMBO_END};      // -
-const uint16_t PROGMEM combo_uG[] = {KC_U, KC_G, COMBO_END};      // _
-const uint16_t PROGMEM combo_qH2[] = {KC_Q, KC_H, COMBO_END};     // '
-const uint16_t PROGMEM combo_wH[] = {KC_W, KC_H, COMBO_END};      // "
-const uint16_t PROGMEM combo_bH[] = {KC_B, KC_H, COMBO_END};      // \
-const uint16_t PROGMEM combo_iG[] = {KC_I, KC_G, COMBO_END};      // [
-const uint16_t PROGMEM combo_oG[] = {KC_O, KC_G, COMBO_END};      // ]
-const uint16_t PROGMEM combo_tH[] = {KC_T, KC_H, COMBO_END};      // :
-const uint16_t PROGMEM combo_yG[] = {KC_Y, KC_G, COMBO_END};      // ;
-/* 出力が /, {, }, =, ? など物理キー依存のものはコンボより物理キーで入力する方が確実 */
+#ifdef OLED_ENABLE
+
+#    include "lib/oledkit/oledkit.h"
+
+void oledkit_render_info_user(void) {
+    keyball_oled_render_keyinfo();
+    keyball_oled_render_ballinfo();
+    keyball_oled_render_layerinfo();
+}
+#endif
+
+#ifdef COMBO_ENABLE
+const uint16_t PROGMEM combo_qw[] = {KC_Q, KC_W, COMBO_END};      // tab
+const uint16_t PROGMEM combo_op[] = {KC_O, KC_P, COMBO_END};      // bs
+const uint16_t PROGMEM combo_aj[] = {KC_A, KC_J, COMBO_END};      // @
+const uint16_t PROGMEM combo_sj[] = {KC_S, KC_J, COMBO_END};      // #
+const uint16_t PROGMEM combo_dj[] = {KC_D, KC_J, COMBO_END};      // $
+const uint16_t PROGMEM combo_pj[] = {KC_P, KC_J, COMBO_END};      // %
+const uint16_t PROGMEM combo_cj[] = {KC_C, KC_J, COMBO_END};      // ^
+const uint16_t PROGMEM combo_ej[] = {KC_E, KC_J, COMBO_END};      // !
+const uint16_t PROGMEM combo_kf[] = {KC_K, KC_F, COMBO_END};      // *
+const uint16_t PROGMEM combo_jf[] = {KC_J, KC_F, COMBO_END};      // +
+const uint16_t PROGMEM combo_lf[] = {KC_L, KC_F, COMBO_END};      // -
+const uint16_t PROGMEM combo_uf[] = {KC_U, KC_F, COMBO_END};      // _
+const uint16_t PROGMEM combo_qf[] = {KC_Q, KC_F, COMBO_END};      // '
+const uint16_t PROGMEM combo_wf[] = {KC_W, KC_F, COMBO_END};      // "
+const uint16_t PROGMEM combo_bf[] = {KC_B, KC_F, COMBO_END};      /* \ */
+const uint16_t PROGMEM combo_if[] = {KC_I, KC_F, COMBO_END};      // [
+const uint16_t PROGMEM combo_of[] = {KC_O, KC_F, COMBO_END};      // ]
+const uint16_t PROGMEM combo_tf[] = {KC_T, KC_F, COMBO_END};      // :
+const uint16_t PROGMEM combo_yf[] = {KC_Y, KC_F, COMBO_END};      // ;
+const uint16_t PROGMEM combo_fj[] = {KC_F, KC_J, COMBO_END};      // ?
 
 combo_t key_combos[] = {
-    /* 既存 */
     COMBO(combo_qw, KC_TAB),
-    COMBO(combo_qh, LSFT(KC_SLASH)),
-    /* 追加 */
-    COMBO(combo_ah,  LSFT(KC_2)),          // @
-    COMBO(combo_sh,  LSFT(KC_3)),          // #
-    COMBO(combo_dh,  LSFT(KC_4)),          // $
-    COMBO(combo_pg,  LSFT(KC_5)),          // %
-    COMBO(combo_ch,  LSFT(KC_6)),          // ^
-    COMBO(combo_eh,  LSFT(KC_1)),          // !
-    COMBO(combo_kG,  LSFT(KC_8)),          // *
-    COMBO(combo_jG,  LSFT(KC_EQL)),        // +
-    COMBO(combo_lG,  KC_MINS),             // -
-    COMBO(combo_uG,  LSFT(KC_MINS)),       // _
-    COMBO(combo_qH2, KC_QUOT),             // '
-    COMBO(combo_wH,  LSFT(KC_QUOT)),       // "
-    COMBO(combo_bH,  KC_BSLS),             // \
-    COMBO(combo_iG,  KC_LBRC),             // [
-    COMBO(combo_oG,  KC_RBRC),             // ]
-    COMBO(combo_tH,  LSFT(KC_SCLN)),       // :
-    COMBO(combo_yG,  KC_SCLN),             // ;
+    COMBO(combo_aj,  LSFT(KC_2)),          // @
+    COMBO(combo_sj,  LSFT(KC_3)),          // #
+    COMBO(combo_dj,  LSFT(KC_4)),          // $
+    COMBO(combo_pj,  LSFT(KC_5)),          // %
+    COMBO(combo_cj,  LSFT(KC_6)),          // ^
+    COMBO(combo_ej,  LSFT(KC_1)),          // !
+    COMBO(combo_kf,  LSFT(KC_8)),          // *
+    COMBO(combo_jf,  LSFT(KC_EQL)),        // +
+    COMBO(combo_lf,  KC_MINS),             // -
+    COMBO(combo_uf,  LSFT(KC_MINS)),       // _
+    COMBO(combo_qf, KC_QUOT),              // '
+    COMBO(combo_wf,  LSFT(KC_QUOT)),       // "
+    COMBO(combo_bf,  KC_BSLS),             /* \ */
+    COMBO(combo_if,  KC_LBRC),             // [
+    COMBO(combo_of,  KC_RBRC),             // ]
+    COMBO(combo_tf,  LSFT(KC_SCLN)),       // :
+    COMBO(combo_yf,  KC_SCLN),             // ;
+    COMBO(combo_fj,  LSFT(KC_SLSH)),       // /
 };
-
-/* ──────────  combo 数  ────────── */
+#endif
 
 /* ───────── Auto-mouse layer ───────── */
 report_mouse_t pointing_device_task_user(report_mouse_t r){
@@ -106,3 +135,7 @@ void matrix_scan_user(void){
         layer_off(_MOUSE); mouse_layer_active=false;
     }
 }
+
+#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+        set_auto_mouse_layer(3);
+#endif
