@@ -80,44 +80,48 @@ void oledkit_render_info_user(void) {
 const uint16_t PROGMEM combo_qw[] = {KC_Q, KC_W, COMBO_END};      // tab
 const uint16_t PROGMEM combo_op[] = {KC_O, KC_P, COMBO_END};      // bs
 const uint16_t PROGMEM combo_aj[] = {KC_A, KC_J, COMBO_END};      // @
-const uint16_t PROGMEM combo_sj[] = {KC_S, KC_J, COMBO_END};      // #
+const uint16_t PROGMEM combo_sj[] = {KC_S, KC_J, COMBO_END};      // /
+const uint16_t PROGMEM combo_hf[] = {KC_H, KC_F, COMBO_END};      // #
 const uint16_t PROGMEM combo_dj[] = {KC_D, KC_J, COMBO_END};      // $
-const uint16_t PROGMEM combo_pj[] = {KC_P, KC_J, COMBO_END};      // %
+const uint16_t PROGMEM combo_fp[] = {KC_P, KC_F, COMBO_END};      // %
 const uint16_t PROGMEM combo_cj[] = {KC_C, KC_J, COMBO_END};      // ^
 const uint16_t PROGMEM combo_ej[] = {KC_E, KC_J, COMBO_END};      // !
 const uint16_t PROGMEM combo_kf[] = {KC_K, KC_F, COMBO_END};      // *
 const uint16_t PROGMEM combo_jf[] = {KC_J, KC_F, COMBO_END};      // +
 const uint16_t PROGMEM combo_lf[] = {KC_L, KC_F, COMBO_END};      // -
 const uint16_t PROGMEM combo_uf[] = {KC_U, KC_F, COMBO_END};      // _
-const uint16_t PROGMEM combo_qf[] = {KC_Q, KC_F, COMBO_END};      // '
-const uint16_t PROGMEM combo_wf[] = {KC_W, KC_F, COMBO_END};      // "
-const uint16_t PROGMEM combo_bf[] = {KC_B, KC_F, COMBO_END};      /* \ */
+const uint16_t PROGMEM combo_qj[] = {KC_Q, KC_J, COMBO_END};      // '
+const uint16_t PROGMEM combo_wj[] = {KC_W, KC_J, COMBO_END};      // "
+const uint16_t PROGMEM combo_jb[] = {KC_B, KC_J, COMBO_END};      /* \ */
+const uint16_t PROGMEM combo_commF[] = {KC_COMM, KC_F, COMBO_END};   // (
+const uint16_t PROGMEM combo_dotF[] = {KC_DOT, KC_F, COMBO_END};    // )
 const uint16_t PROGMEM combo_if[] = {KC_I, KC_F, COMBO_END};      // [
 const uint16_t PROGMEM combo_of[] = {KC_O, KC_F, COMBO_END};      // ]
-const uint16_t PROGMEM combo_tf[] = {KC_T, KC_F, COMBO_END};      // :
+const uint16_t PROGMEM combo_tj[] = {KC_T, KC_J, COMBO_END};      // :
 const uint16_t PROGMEM combo_yf[] = {KC_Y, KC_F, COMBO_END};      // ;
 const uint16_t PROGMEM combo_fj[] = {KC_F, KC_J, COMBO_END};      // ?
 
 combo_t key_combos[] = {
     COMBO(combo_qw, KC_TAB),
     COMBO(combo_op, KC_BSPC),
-    COMBO(combo_aj,  LSFT(KC_2)),          // @ja
-    COMBO(combo_sj,  LSFT(KC_3)),          // ##
-    COMBO(combo_dj,  LSFT(KC_4)),          // $$
-    COMBO(combo_pj,  LSFT(KC_5)),          // %fp
-    COMBO(combo_cj,  LSFT(KC_6)),          // ^&
-    COMBO(combo_ej,  LSFT(KC_1)),          // !!
-    COMBO(combo_kf,  LSFT(KC_8)),          // *()
-    COMBO(combo_jf,  LSFT(KC_EQL)),        // +?
-    COMBO(combo_lf,  KC_MINS),             // --
-    COMBO(combo_uf,  S(KC_INT1)),       // __
-    COMBO(combo_qf, KC_QUOT),              // 'qj
-    COMBO(combo_wf,  LSFT(KC_QUOT)),       // "jw
-    COMBO(combo_bf,  KC_BSLS),             /* \ */jb
-    COMBO(combo_if,  KC_LBRC),             // [@
-    COMBO(combo_of,  KC_RBRC),             // ][]
-    COMBO(combo_tf,  LSFT(KC_SCLN)),       // :jt
-    COMBO(combo_yf,  KC_SCLN),             // ;;
-    COMBO(combo_fj,  LSFT(KC_SLSH)),       // /?
+    COMBO(combo_aj,  KC_LBRC),          // @
+    COMBO(combo_hf,  LSFT(KC_3)),          // #
+    COMBO(combo_dj,  LSFT(KC_4)),          // $
+    COMBO(combo_fp,  LSFT(KC_5)),          // %
+    COMBO(combo_cj,  KC_EQL),          // ^
+    COMBO(combo_ej,  LSFT(KC_1)),          // !
+    COMBO(combo_kf,  LSFT(KC_INT1)),          // *
+    COMBO(combo_jf,  LSFT(KC_SLSH)),        // ?
+    COMBO(combo_lf,  KC_MINS),             // -
+    COMBO(combo_uf,  S(KC_INT1)),       // _
+    COMBO(combo_qj, KC_QUOT),              // '
+    COMBO(combo_wj,  LSFT(KC_QUOT)),       // "
+    COMBO(combo_jb,  KC_INT1),             /* \ */
+    COMBO(combo_commF,  LSFT(KC_8)),       /* ( */
+    COMBO(combo_dotF,  LSFT(KC_9)),        /* ) */
+    COMBO(combo_if,  LSFT(KC_LBRC)),       // [
+    COMBO(combo_of,  KC_RBRC),             // ]
+    COMBO(combo_tf,  LSFT(KC_SCLN)),       // :
+    COMBO(combo_yf,  KC_SCLN),             // ;
 };
 #endif
