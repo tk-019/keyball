@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // 右下端
     , KC_LNG3
   ),
-
+  // 左移動
   [1] = LAYOUT(
     KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_RBRC  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
     KC_F5    , LGUI(KC_LEFT)  , S(KC_6)  ,LGUI(KC_RGHT), S(KC_8)  ,                           S(KC_INT1), KC_BTN1  , KC_PGUP  , KC_BTN2  , KC_SCLN  ,
