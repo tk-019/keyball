@@ -102,8 +102,8 @@ const uint16_t PROGMEM combo_xj[] = {KC_X, KC_J, COMBO_END};      // **
 const uint16_t PROGMEM combo_cj[] = {KC_C, KC_J, COMBO_END};      // ^^
 const uint16_t PROGMEM combo_bj[] = {KC_B, KC_J, COMBO_END};      /* \___ */
 const uint16_t PROGMEM combo_nf[] = {KC_N, KC_F, COMBO_END};      // &
-const uint16_t PROGMEM combo_mf[] = {LT(3,KC_M), KC_J , COMBO_END};      // -
-const uint16_t PROGMEM combo_zx[] = {KC_Z, KC_X , COMBO_END};      // shift z
+const uint16_t PROGMEM combo_mf[] = {LT(3,KC_M), KC_F , COMBO_END};      // -
+const uint16_t PROGMEM combo_zx[] = {LSFT_T(KC_Z), KC_X , COMBO_END};      // shift z
 const uint16_t PROGMEM combo_commF[] = {KC_COMM, KC_F, COMBO_END};   // (
 const uint16_t PROGMEM combo_dotF[] = {KC_DOT, KC_F, COMBO_END};    // )
 
