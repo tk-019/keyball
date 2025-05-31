@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     // Auto enable scroll mode when the highest layer is 3
-    keyball_set_scroll_mode(get_highest_layer(state) == 2);
+    keyball_set_scroll_mode(get_highest_layer(state) == 3);
     return state;
 }
 
@@ -79,30 +79,31 @@ void oledkit_render_info_user(void) {
 #ifdef COMBO_ENABLE
 const uint16_t PROGMEM combo_qw[] = {KC_Q, KC_W, COMBO_END};      // tab
 const uint16_t PROGMEM combo_op[] = {KC_O, KC_P, COMBO_END};      // bs
-const uint16_t PROGMEM combo_qj[] = {KC_Q, KC_J, COMBO_END};      // '
-const uint16_t PROGMEM combo_wj[] = {KC_W, KC_J, COMBO_END};      // "
-const uint16_t PROGMEM combo_ej[] = {KC_E, KC_J, COMBO_END};      // !
-const uint16_t PROGMEM combo_rj[] = {KC_R, KC_J, COMBO_END};      // :
-const uint16_t PROGMEM combo_tj[] = {KC_T, KC_J, COMBO_END};      // ;
-const uint16_t PROGMEM combo_yf[] = {KC_Y, KC_F, COMBO_END};      // ¥
-const uint16_t PROGMEM combo_uf[] = {KC_U, KC_F, COMBO_END};      // +
-const uint16_t PROGMEM combo_if[] = {KC_I, KC_F, COMBO_END};      // =
-const uint16_t PROGMEM combo_of[] = {KC_O, KC_F, COMBO_END};      // |
-const uint16_t PROGMEM combo_fp[] = {KC_P, KC_F, COMBO_END};      // %
-const uint16_t PROGMEM combo_aj[] = {LCTL_T(KC_A), KC_J, COMBO_END};      // @
-const uint16_t PROGMEM combo_sj[] = {KC_S, KC_J, COMBO_END};      // /
-const uint16_t PROGMEM combo_dj[] = {KC_D, KC_J, COMBO_END};      // $
-const uint16_t PROGMEM combo_fj[] = {KC_F, KC_J, COMBO_END};      // ?
-const uint16_t PROGMEM combo_gj[] = {KC_G, KC_J, COMBO_END};      // `(バッククォート)
-const uint16_t PROGMEM combo_hf[] = {KC_H, KC_F, COMBO_END};      // #
-const uint16_t PROGMEM combo_kf[] = {KC_K, KC_F, COMBO_END};      // [
-const uint16_t PROGMEM combo_lf[] = {KC_L, KC_F, COMBO_END};      // ]@
-const uint16_t PROGMEM combo_zj[] = {LSFT_T(KC_Z), KC_J, COMBO_END};      // ~
-const uint16_t PROGMEM combo_xj[] = {KC_X, KC_J, COMBO_END};      // *(
-const uint16_t PROGMEM combo_cj[] = {KC_C, KC_J, COMBO_END};      // ^
-const uint16_t PROGMEM combo_bj[] = {KC_B, KC_J, COMBO_END};      /* \_ */
+const uint16_t PROGMEM combo_qj[] = {KC_Q, KC_J, COMBO_END};      // ''
+const uint16_t PROGMEM combo_wj[] = {KC_W, KC_J, COMBO_END};      // """
+const uint16_t PROGMEM combo_ej[] = {KC_E, KC_J, COMBO_END};      // !!
+const uint16_t PROGMEM combo_rj[] = {KC_R, KC_J, COMBO_END};      // ::
+const uint16_t PROGMEM combo_tj[] = {KC_T, KC_J, COMBO_END};      // ;;
+const uint16_t PROGMEM combo_yf[] = {KC_Y, KC_F, COMBO_END};      // ¥¥
+const uint16_t PROGMEM combo_uf[] = {KC_U, KC_F, COMBO_END};      // ++
+const uint16_t PROGMEM combo_if[] = {KC_I, KC_F, COMBO_END};      // ==
+const uint16_t PROGMEM combo_of[] = {KC_O, KC_F, COMBO_END};      // ||
+const uint16_t PROGMEM combo_fp[] = {KC_P, KC_F, COMBO_END};      // %%
+const uint16_t PROGMEM combo_aj[] = {LCTL_T(KC_A), KC_J, COMBO_END};      // @@
+const uint16_t PROGMEM combo_sj[] = {KC_S, KC_J, COMBO_END};      // //
+const uint16_t PROGMEM combo_dj[] = {KC_D, KC_J, COMBO_END};      // $$
+const uint16_t PROGMEM combo_fj[] = {KC_F, KC_J, COMBO_END};      // ??
+const uint16_t PROGMEM combo_gj[] = {KC_G, KC_J, COMBO_END};      // `(バッククォート)`
+const uint16_t PROGMEM combo_hf[] = {KC_H, KC_F, COMBO_END};      // ##
+const uint16_t PROGMEM combo_kf[] = {KC_K, KC_F, COMBO_END};      // [[]
+const uint16_t PROGMEM combo_lf[] = {KC_L, KC_F, COMBO_END};      // ]]
+const uint16_t PROGMEM combo_zj[] = {LSFT_T(KC_Z), KC_J, COMBO_END};      // ~~
+const uint16_t PROGMEM combo_xj[] = {KC_X, KC_J, COMBO_END};      // **
+const uint16_t PROGMEM combo_cj[] = {KC_C, KC_J, COMBO_END};      // ^^
+const uint16_t PROGMEM combo_bj[] = {KC_B, KC_J, COMBO_END};      /* \___ */
 const uint16_t PROGMEM combo_nf[] = {KC_N, KC_F, COMBO_END};      // &
-const uint16_t PROGMEM combo_mf[] = {KC_M, LT(3,KC_M), COMBO_END};      // -
+const uint16_t PROGMEM combo_mf[] = {LT(3,KC_M), KC_J , COMBO_END};      // -
+const uint16_t PROGMEM combo_zx[] = {KC_Z, KC_X , COMBO_END};      // shift z
 const uint16_t PROGMEM combo_commF[] = {KC_COMM, KC_F, COMBO_END};   // (
 const uint16_t PROGMEM combo_dotF[] = {KC_DOT, KC_F, COMBO_END};    // )
 
@@ -133,6 +134,7 @@ combo_t key_combos[] = {
     COMBO(combo_bj, KC_INT1), /* \ */
     COMBO(combo_nf, S(KC_6)), // &
     COMBO(combo_mf, KC_MINS), // -
+    COMBO(combo_zx, S(KC_Z)), // shift z
     COMBO(combo_commF, S(KC_8)), // (
     COMBO(combo_dotF, S(KC_9)), // )
 };
