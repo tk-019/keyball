@@ -110,7 +110,7 @@ combo_t key_combos[] = {
     COMBO(combo_kf,  LSFT(KC_8)),          // *
     COMBO(combo_jf,  LSFT(KC_EQL)),        // +
     COMBO(combo_lf,  KC_MINS),             // -
-    COMBO(combo_uf,  KC_UNDS),       // _
+    COMBO(combo_uf,  S(KC_RO)),       // _
     COMBO(combo_qf, KC_QUOT),              // '
     COMBO(combo_wf,  LSFT(KC_QUOT)),       // "
     COMBO(combo_bf,  KC_BSLS),             /* \ */

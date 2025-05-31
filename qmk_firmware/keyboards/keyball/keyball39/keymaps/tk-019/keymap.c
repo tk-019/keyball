@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // 右移動と左テンキー
   [2] = LAYOUT(
-    KC_TAB   , KC_7     , KC_8     , KC_9     , KC_MINS  ,                            KC_NUHS  , KC_HOME  , KC_UP  , KC_END  , KC_BSPC  ,
+    KC_TAB   , KC_7     , KC_8     , KC_9     , K１C_MINS  ,                            KC_NUHS  , KC_HOME  , KC_UP  , KC_END  , KC_BSPC  ,
    S(KC_QUOT), KC_4     , KC_5     , KC_6     ,S(KC_SCLN),                            S(KC_9)  , KC_LEFT  , KC_DOWN    , KC_RGHT  , KC_QUOT  ,
     KC_SLSH  , KC_1     , KC_2     , KC_3     ,S(KC_MINS),                           S(KC_NUHS), KC_LEFT  , KC_PGUP  , KC_PGDN  , _______  ,
     KC_ESC   , KC_0     , KC_DOT   , KC_DEL   , KC_ENT   , KC_BSPC  ,      _______  , _______                                 , _______
@@ -102,6 +102,7 @@ const uint16_t PROGMEM combo_fj[] = {KC_F, KC_J, COMBO_END};      // ?
 
 combo_t key_combos[] = {
     COMBO(combo_qw, KC_TAB),
+    COMBO(combo_op, KC_BSPC),
     COMBO(combo_aj,  LSFT(KC_2)),          // @
     COMBO(combo_sj,  LSFT(KC_3)),          // #
     COMBO(combo_dj,  LSFT(KC_4)),          // $
