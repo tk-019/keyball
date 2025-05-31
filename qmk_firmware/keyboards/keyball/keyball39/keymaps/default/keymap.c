@@ -26,12 +26,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT(
     KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
     LCTL_T(KC_A)     , KC_S     , KC_D     , KC_F     , KC_G     ,                            KC_H     , KC_J     , KC_K     , KC_L     , KC_ENT  ,
-    LSFT_T(KC_Z)  , KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , LT(3,KC_M)     , KC_COMM  , KC_DOT   , RSFT_T(S(KC_INT1))  ,
+    LSFT_T(KC_Z)  , KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , LT(3,KC_M)     , KC_COMM  , LT(2, KC_DOT)   , RSFT_T(S(KC_INT1))  ,
     KC_ESC  , KC_LALT  , KC_LGUI
     // 左親指
     ,KC_LCTL, LT(1,KC_LNG2),LT(2,KC_SPC)
     // 右親指
-    ,LT(1,KC_ENT),LT(2,KC_LNG1)
+    ,LT(1,KC_SPC),LT(2,KC_LNG1)
     // 右下端
     , KC_LNG3
   ),
@@ -44,9 +44,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [2] = LAYOUT(
-    KC_TAB   , KC_7     , KC_8     , KC_9     , KC_MINS  ,                            KC_NUHS  , KC_HOME  , KC_UP  , KC_END  , KC_BSPC  ,
+    KC_TAB   , KC_7     , KC_8     , KC_9     , KC_MINS  ,                            KC_PGUP  , KC_HOME  , KC_UP  , KC_END  , KC_PGDN  ,
     LCTL_T(S(KC_QUOT)), KC_4     , KC_5     , KC_6     ,S(KC_SCLN),                            S(KC_9)  , KC_LEFT  , KC_DOWN    , KC_RGHT  , KC_ENT  ,
-    LSFT_T(KC_SLSH)  , KC_1     , KC_2     , KC_3     ,S(KC_MINS),                           S(KC_NUHS), KC_LEFT  , KC_PGUP  , KC_PGDN  , KC_RSFT  ,
+    LSFT_T(KC_SLSH)  , KC_1     , KC_2     , KC_3     ,S(KC_MINS),                           S(KC_NUHS), KC_BTN1  , KC_BTN2  ,  _______ , KC_RSFT  ,
     KC_ESC   , LALT_T(KC_0)     , LGUI_T(KC_DOT)   , KC_DEL   , KC_ENT   , KC_BSPC  ,      _______  , _______,                                   _______
   ),
   [3] = LAYOUT(
@@ -93,24 +93,24 @@ const uint16_t PROGMEM combo_aj[] = {LCTL_T(KC_A), KC_J, COMBO_END};      // @
 const uint16_t PROGMEM combo_sj[] = {KC_S, KC_J, COMBO_END};      // /
 const uint16_t PROGMEM combo_dj[] = {KC_D, KC_J, COMBO_END};      // $
 const uint16_t PROGMEM combo_fj[] = {KC_F, KC_J, COMBO_END};      // ?
-// const uint16_t PROGMEM combo_gj[] = {KC_G, KC_J, COMBO_END};      // 
+const uint16_t PROGMEM combo_gj[] = {KC_G, KC_J, COMBO_END};      // `(バッククォート)
 const uint16_t PROGMEM combo_hf[] = {KC_H, KC_F, COMBO_END};      // #
 const uint16_t PROGMEM combo_kf[] = {KC_K, KC_F, COMBO_END};      // [
-const uint16_t PROGMEM combo_lf[] = {KC_L, KC_F, COMBO_END};      // ]
-const uint16_t PROGMEM combo_zf[] = {LSFT_T(KC_Z), KC_F, COMBO_END};      // ~
-const uint16_t PROGMEM combo_xf[] = {KC_X, KC_F, COMBO_END};      // *
+const uint16_t PROGMEM combo_lf[] = {KC_L, KC_F, COMBO_END};      // ]@
+const uint16_t PROGMEM combo_zj[] = {LSFT_T(KC_Z), KC_J, COMBO_END};      // ~
+const uint16_t PROGMEM combo_xj[] = {KC_X, KC_J, COMBO_END};      // *(
 const uint16_t PROGMEM combo_cj[] = {KC_C, KC_J, COMBO_END};      // ^
-const uint16_t PROGMEM combo_bj[] = {KC_B, KC_J, COMBO_END};      /* \ */
+const uint16_t PROGMEM combo_bj[] = {KC_B, KC_J, COMBO_END};      /* \ */_
 const uint16_t PROGMEM combo_nf[] = {KC_N, KC_F, COMBO_END};      // &
-const uint16_t PROGMEM combo_mf[] = {KC_M, KC_F, COMBO_END};      // -
+const uint16_t PROGMEM combo_mf[] = {KC_M, LT(3,KC_M), COMBO_END};      // -
 const uint16_t PROGMEM combo_commF[] = {KC_COMM, KC_F, COMBO_END};   // (
 const uint16_t PROGMEM combo_dotF[] = {KC_DOT, KC_F, COMBO_END};    // )
 
 combo_t key_combos[] = {
     COMBO(combo_qw, KC_TAB),
     COMBO(combo_op, KC_BSPC),
-    COMBO(combo_qj, LSFT(KC_LBRC)), // '
-    COMBO(combo_wj, LSFT(KC_RBRC)), // "
+    COMBO(combo_qj, S(KC_7)), // '
+    COMBO(combo_wj, S(KC_2)), // "
     COMBO(combo_ej, LSFT(KC_1)), // !
     COMBO(combo_rj, KC_QUOT), // :
     COMBO(combo_tj, KC_SCLN), // ;
@@ -123,12 +123,12 @@ combo_t key_combos[] = {
     COMBO(combo_sj, KC_SLSH), // /
     COMBO(combo_dj, LSFT(KC_4)), // $
     COMBO(combo_fj, S(KC_SLSH)), // ?
-    // COMBO(combo_gj, KC_GRV), // not used
+    COMBO(combo_gj, LSFT(KC_LBRC)), // `(バッククォート)
     COMBO(combo_hf, S(KC_3)), // #
     COMBO(combo_kf, KC_RBRC), // [
-    COMBO(combo_lf, KC_LBRC), // ]
-    COMBO(combo_zf, S(KC_EQL)), // ~
-    COMBO(combo_xf, S(KC_8)),
+    COMBO(combo_lf, KC_BSLS), // ]
+    COMBO(combo_zj, S(KC_EQL)), // ~
+    COMBO(combo_xj, S(KC_QUOT)), // *
     COMBO(combo_cj, KC_EQL), // ^
     COMBO(combo_bj, KC_INT1), /* \ */
     COMBO(combo_nf, S(KC_6)), // &
