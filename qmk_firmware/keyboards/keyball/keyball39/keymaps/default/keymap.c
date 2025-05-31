@@ -111,7 +111,7 @@ combo_t key_combos[] = {
     COMBO(combo_cj,  KC_EQL),          // ^
     COMBO(combo_ej,  LSFT(KC_1)),          // !
     COMBO(combo_kf,  LSFT(KC_INT1)),          // *
-    COMBO(combo_jf,  LSFT(KC_SLSH)),        // ?
+    COMBO(combo_fj,  LSFT(KC_SLSH)),        // ?
     COMBO(combo_lf,  KC_MINS),             // -
     COMBO(combo_uf,  S(KC_INT1)),       // _
     COMBO(combo_qj, KC_QUOT),              // '
@@ -121,7 +121,7 @@ combo_t key_combos[] = {
     COMBO(combo_dotF,  LSFT(KC_9)),        /* ) */
     COMBO(combo_if,  LSFT(KC_LBRC)),       // [
     COMBO(combo_of,  KC_RBRC),             // ]
-    COMBO(combo_tf,  LSFT(KC_SCLN)),       // :
+    COMBO(combo_tj,  LSFT(KC_SCLN)),       // :
     COMBO(combo_yf,  KC_SCLN),             // ;
 };
 #endif
