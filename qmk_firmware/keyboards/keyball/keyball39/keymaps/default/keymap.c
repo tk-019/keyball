@@ -110,7 +110,7 @@ combo_t key_combos[] = {
     COMBO(combo_kf,  LSFT(KC_8)),          // *
     COMBO(combo_jf,  LSFT(KC_EQL)),        // +
     COMBO(combo_lf,  KC_MINS),             // -
-    COMBO(combo_uf,  LSFT(KC_MINS)),       // _
+    COMBO(combo_uf,  KC_UNDS),       // _
     COMBO(combo_qf, KC_QUOT),              // '
     COMBO(combo_wf,  LSFT(KC_QUOT)),       // "
     COMBO(combo_bf,  KC_BSLS),             /* \ */
@@ -120,10 +120,4 @@ combo_t key_combos[] = {
     COMBO(combo_yf,  KC_SCLN),             // ;
     COMBO(combo_fj,  LSFT(KC_SLSH)),       // /
 };
-#endif
-
-#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
-void pointing_device_init_user(void) {
-    set_auto_mouse_enable(true);
-}
 #endif
