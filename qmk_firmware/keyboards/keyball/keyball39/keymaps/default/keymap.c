@@ -77,9 +77,9 @@ void oledkit_render_info_user(void) {
 
 
 #ifdef COMBO_ENABLE
-const uint16_t PROGMEM combo_mComm[] = {LT(3,KC_M), KC_COMM, COMBO_END} // btn1
-const uint16_t PROGMEM combo_commDot[] = {KC_COMM, KC_DOT, COMBO_END} // btn2
-const uint16_t PROGMEM combo_mDot[] = {LT(3,KC_M), KC_DOT, COMBO_END} // btn3
+const uint16_t PROGMEM combo_mComm[] = {LT(3,KC_M), KC_COMM, COMBO_END}; // btn1
+const uint16_t PROGMEM combo_commDot[] = {KC_COMM, KC_DOT, COMBO_END}; // btn2
+const uint16_t PROGMEM combo_mDot[] = {LT(3,KC_M), KC_DOT, COMBO_END}; // btn3
 const uint16_t PROGMEM combo_qw[] = {KC_Q, KC_W, COMBO_END};      // tab
 const uint16_t PROGMEM combo_qw[] = {KC_S, KC_D, COMBO_END};      // tab2
 const uint16_t PROGMEM combo_kl[] = {KC_K, KC_L, COMBO_END};      // bs
