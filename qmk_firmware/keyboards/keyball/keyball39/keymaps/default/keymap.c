@@ -18,13 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
-typedef struct {
-    uint16_t trigger;   // カスタムキーコード（CA_XXX）
-    uint16_t mods;      // 押しっぱなしにする修飾キー（MOD_BIT(KC_LSFT) など）
-    uint16_t keycode;   // 実際に tap_code() で送るキー
-    uint8_t  delay;     // register→tap の間に挟むウェイト(ms)
-} combo_action_t;
-
 #include "quantum.h"
 
 // clang-format off
@@ -335,3 +328,45 @@ bool process_combo_event(uint16_t combo_index, bool pressed) {
     }
     return true;
 }
+typedef struct {
+    uint16_t trigger;   // カスタムキーコード（CA_XXX）
+    uint16_t mods;      // 押しっぱなしにする修飾キー（MOD_BIT(KC_LSFT) など）
+    uint16_t keycode;   // 実際に tap_code() で送るキー
+    uint8_t  delay;     // register→tap の間に挟むウェイト(ms)
+} combo_action_t;
+
+#ifdef COMBO_ENABLE
+const uint16_t PROGMEM combo_io[] = {KC_I, KC_O, COMBO_END};      // bs
+const uint16_t PROGMEM combo_op[] = {KC_O, KC_P, COMBO_END};      // ー
+const uint16_t PROGMEM combo_jk[] = {KC_J, KC_K, COMBO_END};      // btn1
+const uint16_t PROGMEM combo_kl[] = {KC_K, KC_L, COMBO_END};      // btn2
+const uint16_t PROGMEM combo_jl[] = {KC_J, KC_L, COMBO_END};      // btn3
+const uint16_t PROGMEM combo_qw[] = {KC_Q, KC_W, COMBO_END};      // tab
+const uint16_t PROGMEM combo_sd[] = {KC_S, KC_D, COMBO_END};      // tab2
+const uint16_t PROGMEM combo_qj[] = {KC_Q, KC_J, COMBO_END};      // '
+const uint16_t PROGMEM combo_wj[] = {KC_W, KC_J, COMBO_END};      // "
+const uint16_t PROGMEM combo_ej[] = {KC_E, KC_J, COMBO_END};      // !
+const uint16_t PROGMEM combo_rj[] = {KC_R, KC_J, COMBO_END};      // :
+const uint16_t PROGMEM combo_tj[] = {KC_T, KC_J, COMBO_END};      // ;
+const uint16_t PROGMEM combo_yf[] = {KC_Y, KC_F, COMBO_END};      // ¥
+const uint16_t PROGMEM combo_uf[] = {KC_U, KC_F, COMBO_END};      // +
+const uint16_t PROGMEM combo_if[] = {KC_I, KC_F, COMBO_END};      // =
+const uint16_t PROGMEM combo_of[] = {KC_O, KC_F, COMBO_END};      // |
+const uint16_t PROGMEM combo_fp[] = {KC_P, KC_F, COMBO_END};      // %
+const uint16_t PROGMEM combo_aj[] = {LCTL_T(KC_A), KC_J, COMBO_END};      // @
+const uint16_t PROGMEM combo_sj[] = {KC_S, KC_J, COMBO_END};      // /
+const uint16_t PROGMEM combo_dj[] = {KC_D, KC_J, COMBO_END};      // $
+const uint16_t PROGMEM combo_fj[] = {KC_F, KC_J, COMBO_END};      // ?
+const uint16_t PROGMEM combo_gj[] = {KC_G, KC_J, COMBO_END};      // `(バッククォート)`
+const uint16_t PROGMEM combo_hf[] = {KC_H, KC_F, COMBO_END};      // #
+const uint16_t PROGMEM combo_kf[] = {KC_K, KC_F, COMBO_END};      // [
+const uint16_t PROGMEM combo_lf[] = {KC_L, KC_F, COMBO_END};      // ]
+const uint16_t PROGMEM combo_zj[] = {LSFT_T(KC_Z), KC_J, COMBO_END};      // ~
+const uint16_t PROGMEM combo_xj[] = {KC_X, KC_J, COMBO_END};      // *
+const uint16_t PROGMEM combo_cj[] = {KC_C, KC_J, COMBO_END};      // ^^
+const uint16_t PROGMEM combo_bj[] = {KC_B, KC_J, COMBO_END};      /* \___ */
+const uint16_t PROGMEM combo_nf[] = {KC_N, KC_F, COMBO_END};      // &
+const uint16_t PROGMEM combo_mf[] = {LT(3,KC_M), KC_F , COMBO_END};      // -
+const uint16_t PROGMEM combo_zx[] = {LSFT_T(KC_Z), KC_X , COMBO_END};      // shift z
+const uint16_t PROGMEM combo_commF[] = {KC_COMM, KC_F, COMBO_END};   // (
+const uint16_t PROGMEM combo_dotF[] = {KC_DOT, KC_F, COMBO_END};    // )
