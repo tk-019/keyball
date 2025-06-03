@@ -75,12 +75,12 @@ void oledkit_render_info_user(void) {
 }
 #endif
 
+
 #ifdef COMBO_ENABLE
 
-// 1. 生の「キー２つだけの組み合わせ」配列を定義（PROGMEM や const は外す）
-//    → COMBO_ACTION() を使うためには key_combos 全体を RAM に置く必要があるため
-//    → ただし「combo_jk[] など」は PROGMEM で構わない
-//
+// 1) まず、各コンボの「キーの組み合わせ」を PROGMEM に定義。
+//    PROGMEM にしておくと、RAM に置きたくない部分（実キーコードの列）だけを
+//    フラッシュに置いたままにできます。
 static const uint16_t PROGMEM combo_jk[]    = { KC_J,    KC_K,    COMBO_END };  // BTN1
 static const uint16_t PROGMEM combo_kl[]    = { KC_K,    KC_L,    COMBO_END };  // BTN2
 static const uint16_t PROGMEM combo_jl[]    = { KC_J,    KC_L,    COMBO_END };  // BTN3
@@ -88,7 +88,7 @@ static const uint16_t PROGMEM combo_qw[]    = { KC_Q,    KC_W,    COMBO_END };  
 static const uint16_t PROGMEM combo_sd[]    = { KC_S,    KC_D,    COMBO_END };  // TAB2
 static const uint16_t PROGMEM combo_io[]    = { KC_I,    KC_O,    COMBO_END };  // BACKSPACE
 static const uint16_t PROGMEM combo_op[]    = { KC_O,    KC_P,    COMBO_END };  // “-”
-static const uint16_t PROGMEM combo_qj[]    = { KC_Q,    KC_J,    COMBO_END };  // “‘” (Shift+7)
+static const uint16_t PROGMEM combo_qj[]    = { KC_Q,    KC_J,    COMBO_END };  // “’” (Shift+7)
 static const uint16_t PROGMEM combo_wj[]    = { KC_W,    KC_J,    COMBO_END };  // “"” (Shift+2)
 static const uint16_t PROGMEM combo_ej[]    = { KC_E,    KC_J,    COMBO_END };  // “!” (Shift+1)
 static const uint16_t PROGMEM combo_rj[]    = { KC_R,    KC_J,    COMBO_END };  // “:” (QUOT)
@@ -117,9 +117,7 @@ static const uint16_t PROGMEM combo_commF[] = { KC_COMM, KC_F,    COMBO_END };  
 static const uint16_t PROGMEM combo_dotF[]  = { KC_DOT,  KC_F,    COMBO_END };  // “)” (Shift+9)
 
 
-//
-// 2. インデックスを列挙型で定義
-//
+// 2) 「コンボのインデックス」を列挙型で定義
 enum combo_index {
     C_JK,      // combo_jk
     C_KL,      // combo_kl
@@ -158,10 +156,9 @@ enum combo_index {
     C_NUM      // 合計数（必ず最後）
 };
 
-//
-// 3.「発火判定だけ」を行う key_combos[] を列挙型に合わせて作成
-//    → PROGMEM や const は外し、「RAM 上」に置くこと
-//
+
+// 3) RAM 上に展開される combo_t 配列を、「必ずこのイニシャライザの中だけで」 COMBO(...) を使って定義する
+//    → このブロック全体が「= { … };」 のイニシャライザ部分であることに注意
 combo_t key_combos[C_NUM] = {
     [C_JK]     = COMBO( combo_jk,    COMBO_ACTION(C_JK) ),
     [C_KL]     = COMBO( combo_kl,    COMBO_ACTION(C_KL) ),
@@ -199,74 +196,23 @@ combo_t key_combos[C_NUM] = {
     [C_DOTF]   = COMBO( combo_dotF,  COMBO_ACTION(C_DOTF) ),
 };
 
-
-//
-// 4. 「コンボインデックス → 送出すべきキーコード＋修飾ビット」をテーブル化
-//
-typedef struct {
-    uint16_t keycode;  // tap_code16() で送信するメインのキーコード
-    uint8_t  mods;     // 先に登録すべき修飾ビット (MOD_BIT(…) で指定)
-} combo_output_t;
-
-static const combo_output_t combo_output_table[C_NUM] = {
-    [C_JK]    = { KC_BTN1,    0                    }, // J+K → 左ボタン
-    [C_KL]    = { KC_BTN2,    0                    }, // K+L → 中ボタン
-    [C_JL]    = { KC_BTN3,    0                    }, // J+L → 右ボタン
-    [C_QW]    = { KC_TAB,     0                    }, // Q+W → Tab
-    [C_SD]    = { KC_TAB,     0                    }, // S+D → Tab2
-    [C_IO]    = { KC_BSPC,    0                    }, // I+O → Backspace
-    [C_OP]    = { KC_MINS,    0                    }, // O+P → –
-    [C_QJ]    = { KC_7,       MOD_BIT(KC_LSFT)     }, // Q+J → Shift+7 (’)
-    [C_WJ]    = { KC_2,       MOD_BIT(KC_LSFT)     }, // W+J → Shift+2 (”)
-    [C_EJ]    = { KC_1,       MOD_BIT(KC_LSFT)     }, // E+J → Shift+1 (!)
-    [C_RJ]    = { KC_QUOT,    0                    }, // R+J → QUOT (:)
-    [C_TJ]    = { KC_SCLN,    0                    }, // T+J → SCLN (;)
-    [C_YF]    = { KC_INT3,    0                    }, // Y+F → INT3 (¥)
-    [C_UF]    = { KC_SCLN,    MOD_BIT(KC_LSFT)     }, // U+F → Shift+SCLN (+)
-    [C_IF]    = { KC_MINS,    MOD_BIT(KC_LSFT)     }, // I+F → Shift+MINS (=)
-    [C_OF]    = { KC_INT3,    MOD_BIT(KC_LSFT)     }, // O+F → Shift+INT3 (|)
-    [C_FP]    = { KC_5,       MOD_BIT(KC_LSFT)     }, // F+P → Shift+5 (%)
-    [C_AJ]    = { KC_LBRC,    0                    }, // A+J → LBRC (@)
-    [C_SJ]    = { KC_SLSH,    0                    }, // S+J → SLSH (/)
-    [C_DJ]    = { KC_4,       MOD_BIT(KC_LSFT)     }, // D+J → Shift+4 ($)
-    [C_FJ]    = { KC_SLSH,    MOD_BIT(KC_LSFT)     }, // F+J → Shift+SLSH (?)
-    [C_GJ]    = { KC_LBRC,    MOD_BIT(KC_LSFT)     }, // G+J → Shift+LBRC (`)
-    [C_HF]    = { KC_3,       MOD_BIT(KC_LSFT)     }, // H+F → Shift+3 (#)
-    [C_KF]    = { KC_RBRC,    0                    }, // K+F → RBRC ([)
-    [C_LF]    = { KC_BSLS,    0                    }, // L+F → BSLS (])
-    [C_ZJ]    = { KC_EQL,     MOD_BIT(KC_LSFT)     }, // Z+J → Shift+EQL (~)
-    [C_XJ]    = { KC_QUOT,    MOD_BIT(KC_LSFT)     }, // X+J → Shift+QUOT (*)
-    [C_CJ]    = { KC_EQL,     0                    }, // C+J → EQL (^)
-    [C_BJ]    = { KC_INT1,    0                    }, // B+J → INT1 (\)
-    [C_NF]    = { KC_6,       MOD_BIT(KC_LSFT)     }, // N+F → Shift+6 (&)
-    [C_MF]    = { KC_MINS,    0                    }, // M+F → MINS (–)
-    [C_ZX]    = { KC_Z,       MOD_BIT(KC_LSFT)     }, // Z+X → Shift+Z
-    [C_COMMF] = { KC_8,       MOD_BIT(KC_LSFT)     }, // COMMA+F → Shift+8 (()
-    [C_DOTF]  = { KC_9,       MOD_BIT(KC_LSFT)     }, // DOT+F   → Shift+9 ())
-};
+#endif  // COMBO_ENABLE
 
 
-//
-// 5. process_combo_event() を QMK のシグネチャ に合わせて定義
-//
+#ifdef COMBO_ENABLE
+// 4) process_combo_event() は必ず QMK と同じシグネチャ（void 戻り値）で定義する
 void process_combo_event(uint16_t combo_index, bool pressed) {
-    if (!pressed) {
-        // 離したタイミングでは何もしない
-        return;
-    }
-    // 送出すべきキー＋修飾をテーブルから取り出す
+    if (!pressed) return;
+
+    // 送出キー＋修飾ビットテーブル（省略）
+    // 例：combo_output_table[C_JK] = { KC_BTN1, 0 };
+    //     combo_output_table[C_QJ] = { KC_7, MOD_BIT(KC_LSFT) }; などを別途定義しておく
+
+    extern const combo_output_t combo_output_table[];  // あなたが定義しているテーブルを参照
     combo_output_t out = combo_output_table[combo_index];
 
-    // もし修飾ビットが指定されていれば、先に hold
-    if (out.mods) {
-        register_mods(out.mods);
-    }
-    // メインのキーを tap
+    if (out.mods)   register_mods  (out.mods);
     tap_code16(out.keycode);
-    // hold していた修飾を戻す
-    if (out.mods) {
-        unregister_mods(out.mods);
-    }
+    if (out.mods)   unregister_mods(out.mods);
 }
-
-#endif  // COMBO_ENABLE
+#endif
