@@ -18,6 +18,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
+typedef struct {
+    uint16_t trigger;   // カスタムキーコード（CA_XXX）
+    uint16_t mods;      // 押しっぱなしにする修飾キー（MOD_BIT(KC_LSFT) など）
+    uint16_t keycode;   // 実際に tap_code() で送るキー
+    uint8_t  delay;     // register→tap の間に挟むウェイト(ms)
+} combo_action_t;
+
 #include "quantum.h"
 
 // clang-format off
@@ -328,9 +335,3 @@ bool process_combo_event(uint16_t combo_index, bool pressed) {
     }
     return true;
 }
-typedef struct {
-    uint16_t trigger;   // カスタムキーコード（CA_XXX）
-    uint16_t mods;      // 押しっぱなしにする修飾キー（MOD_BIT(KC_LSFT) など）
-    uint16_t keycode;   // 実際に tap_code() で送るキー
-    uint8_t  delay;     // register→tap の間に挟むウェイト(ms)
-} combo_action_t;
