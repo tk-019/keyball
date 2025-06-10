@@ -26,4 +26,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define AUTO_MOUSE_DEFAULT_LAYER 1
 #define COMBO_HOLD_TERM  120
-#define TAPPING_TERM 110        // デフォルト200 → 120msなど短く
+#define TAPPING_TERM 120        // デフォルト200 → 120msなど短く
+#define IGNORE_MOD_TAP_INTERRUPT
