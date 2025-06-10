@@ -27,4 +27,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define AUTO_MOUSE_DEFAULT_LAYER 1
 #define COMBO_HOLD_TERM  120
 #define TAPPING_TERM 110        // デフォルト200 → 120msなど短く
-#define PERMISSIVE_HOLD         // 他キーを押した瞬間ホールド確定
