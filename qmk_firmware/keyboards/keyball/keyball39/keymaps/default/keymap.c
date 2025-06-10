@@ -116,6 +116,7 @@ combo_t key_combos[] = {
     COMBO(combo_we, KC_TAB), // tab
     COMBO(combo_sd, KC_TAB), // tab2
     COMBO(combo_df, KC_SPC),  // Space
+    COMBO(combo_jk, KC_BTN1), // btn1
     COMBO(combo_kl, KC_BTN2), // btn2
     COMBO(combo_jl, KC_BTN3), // btn3
     COMBO(combo_op, KC_MINS), // -
