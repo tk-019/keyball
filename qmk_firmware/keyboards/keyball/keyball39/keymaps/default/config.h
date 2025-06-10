@@ -28,4 +28,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COMBO_HOLD_TERM  120
 #define TAPPING_TERM 120        // デフォルト200 → 120msなど短く
 #define COMBO_TERM  30          // デフォルト50ms
-#define IGNORE_MOD_TAP_INTERRUPT
