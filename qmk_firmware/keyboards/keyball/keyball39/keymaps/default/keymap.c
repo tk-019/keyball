@@ -129,7 +129,7 @@ combo_t key_combos[] = {
     COMBO(combo_uf, LSFT(KC_7)), // '
     COMBO(combo_if, LSFT(KC_8)), // (
     COMBO(combo_of, LSFT(KC_9)), // )
-    COMBO(combo_fp, LSFT(KC_0)), // =
+    COMBO(combo_fp, LSFT(KC_MINS)), // =
     COMBO(combo_aj, KC_LBRC), // @
     COMBO(combo_dj, LSFT(KC_INT3)), // |
     COMBO(combo_fj, LSFT(KC_SCLN)), // +
