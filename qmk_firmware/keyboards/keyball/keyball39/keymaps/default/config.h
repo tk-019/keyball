@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define AUTO_MOUSE_DEFAULT_LAYER 1
 #define COMBO_HOLD_TERM  120    // コンボのホールド昇格時間
-#define TAPPING_TERM 180        // デフォルト200 → 120msなど短く
+#define TAPPING_TERM 170        // デフォルト200 → 120msなど短く
 #define COMBO_TERM  30          // デフォルト50ms
 
 /* 毎レポートで NKRO を強制オンにする */
