@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LSFT_T(KC_Z)  , KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , LT(3,KC_M)     , KC_COMM  , KC_DOT   , RSFT_T(LSFT(KC_SLSH))  ,
     KC_ESC  ,  KC_LGUI  ,KC_LALT
     // 左親指
-    ,LT(1,KC_LNG2),LT(2,KC_SPC),KC_LCTL,
+    ,LT(1,KC_LNG2),LT(2,KC_SPC),KC_LCTL
     // 右親指
     ,LT(1,KC_SPC),LT(2,KC_LNG1)
     // 右下端
