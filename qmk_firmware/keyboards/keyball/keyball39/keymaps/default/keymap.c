@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LSFT_T(KC_Z)  , KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , LT(3,KC_M)     , KC_COMM  , KC_DOT   , RSFT_T(LSFT(KC_SLSH))  ,
     KC_ESC  ,  KC_LGUI  ,KC_LALT
     // 左親指
-    ,KC_LCTL, LT(1,KC_LNG2),LT(2,KC_SPC)
+    ,LT(1,KC_LNG2),LT(2,KC_SPC),KC_LCTL,
     // 右親指
     ,LT(1,KC_SPC),LT(2,KC_LNG1)
     // 右下端
@@ -40,14 +40,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
     KC_LCTL    , LCTL(LGUI(KC_LEFT))  , LGUI(KC_TAB)  ,LCTL(LGUI(KC_RGHT)), LSFT(KC_8)  ,                           LSFT(KC_INT1), KC_BTN1  , KC_PGUP  , KC_BTN2  , KC_ENT  ,
     KC_LSFT, LALT(KC_LEFT),LALT(KC_TAB)   , LALT(KC_RGHT)  ,LSFT(KC_RBRC),                            KC_LBRC  , KC_DLR   , KC_PGDN  , KC_BTN3  , RSFT_T(KC_F11)   ,
-    KC_ESC  ,  KC_LGUI  ,KC_LALT  , KC_LCTL  , _______  , _______  ,      TO(2)    , TO(0) ,                                              KC_F12
+    KC_ESC  ,  KC_LGUI  ,KC_LALT  ,  _______  , _______  ,KC_LCTL  ,      TO(2)    , TO(0) ,                                              KC_F12
   ),
   // 右移動＋マウスと左数字
   [2] = LAYOUT(
     KC_NUM_LOCK   , KC_KP_7     , KC_KP_8     , KC_KP_9     , KC_MINS  ,                            KC_PGUP  , KC_HOME  , KC_UP  , KC_END  , KC_PGDN  ,
     KC_LCTL, KC_KP_4     , KC_KP_5     , KC_KP_6     ,KC_COMM,                            LSFT(KC_9)  , KC_LEFT  , KC_DOWN    , KC_RGHT  , KC_ENT  ,
     KC_LSFT , KC_KP_1     , KC_KP_2     , KC_KP_3     ,KC_DOT,                           KC_BTN3, KC_BTN1  , KC_BTN2  ,  _______ , KC_RSFT  ,
-    KC_ESC   , KC_LGUI     , KC_LALT   , KC_LCTL   , KC_KP_0   , KC_KP_0  ,      _______  , _______,                                   _______
+    KC_ESC   , KC_LGUI     , KC_LALT   ,  KC_KP_0   , KC_KP_0  ,KC_LCTL   ,      _______  , _______,                                   _______
   ),
   [3] = LAYOUT(
     RGB_TOG  , AML_TO   , AML_I50  , AML_D50  , _______  ,                            _______  , _______  , SSNP_HOR , SSNP_VRT , SSNP_FRE ,
