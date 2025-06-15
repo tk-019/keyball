@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 
 #include "quantum.h"
+#include "keymap_japanese.h"
+
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -33,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // 右親指
     ,LT(1,KC_SPC),LT(2,KC_LNG1)
     // 右下端
-    , KC_ESC
+    , JP_YEN
     //, LT(3,LSFT(KC_INT1))
   ),
   // 左移動とファンクション
@@ -110,10 +112,9 @@ const uint16_t PROGMEM combo_bj[] = {KC_B, KC_J, COMBO_END};      /* \___ */
 const uint16_t PROGMEM combo_nf[] = {KC_N, KC_F, COMBO_END};      // ~
 const uint16_t PROGMEM combo_commF[] = {KC_COMM, KC_F, COMBO_END};   // [
 const uint16_t PROGMEM combo_dotF[] = {KC_DOT, KC_F, COMBO_END};    // ]
-const uint16_t PROGMEM combo_f_[] = {KC_F, LT(3,LSFT(KC_INT1)), COMBO_END};    // ¥
 
 combo_t key_combos[] = {
-    COMBO(combo_commDot, LSFT(KC_INT1)), // _
+    COMBO(combo_commDot, JP_UNDS), // _
     COMBO(combo_io, KC_BSPC), // bs
     COMBO(combo_ui, KC_DELETE), // del
     COMBO(combo_we, KC_TAB), // tab
@@ -122,29 +123,28 @@ combo_t key_combos[] = {
     COMBO(combo_jk, KC_BTN1), // btn1
     COMBO(combo_kl, KC_BTN2), // btn2
     COMBO(combo_jl, KC_BTN3), // btn3
-    COMBO(combo_op, KC_MINS), // -
-    COMBO(combo_qj, KC_1), // !
-    COMBO(combo_wj, KC_2), // "
-    COMBO(combo_ej, KC_3), // #
-    COMBO(combo_rj, KC_4), // $
-    COMBO(combo_tj, KC_5), // %
-    COMBO(combo_yf, KC_6), // &
-    COMBO(combo_uf, KC_7), // '
-    COMBO(combo_if, KC_8), // (
-    COMBO(combo_of, KC_9), // )
-    COMBO(combo_fp, KC_0), // 0
-    COMBO(combo_aj, KC_LBRC), // @
-    COMBO(combo_dj, LSFT(KC_INT3)), // |
-    COMBO(combo_fj, LSFT(KC_SCLN)), // +
-    COMBO(combo_gj, LSFT(KC_LBRC)), // `(バッククォート)
-    COMBO(combo_kf, LSFT(KC_QUOT)), // *
-    COMBO(combo_lf, KC_SCLN), // :
-    COMBO(combo_entf, KC_QUOT), // ;
-    COMBO(combo_cj, KC_EQL), // ^
-    COMBO(combo_bj, KC_INT1), /* \ */
-    COMBO(combo_nf, LSFT(KC_EQL)), // &
-    COMBO(combo_commF, KC_RBRC), // [
-    COMBO(combo_dotF, KC_BSLS), // ]
-    COMBO(combo_f_, KC_INT3) // ¥
+    COMBO(combo_op, JP_MINS), // -
+    COMBO(combo_qj, JP_EXLM), // !
+    COMBO(combo_wj, JP_DQUO), // "
+    COMBO(combo_ej, JP_HASH), // #
+    COMBO(combo_rj, JP_DLR), // $
+    COMBO(combo_tj, JP_PERC), // %
+    COMBO(combo_yf, JP_AMPR), // &
+    COMBO(combo_uf, JP_QUOT), // '
+    COMBO(combo_if, JP_LPRN), // (
+    COMBO(combo_of, JP_RPRN), // )
+    COMBO(combo_fp, JP_PIPE), // |
+    COMBO(combo_aj, JP_AT), // @
+    // COMBO(combo_dj, JP_PIPE), // |
+    COMBO(combo_fj, JP_PLUS), // +
+    COMBO(combo_gj, JP_GRV), // `(バッククォート)
+    COMBO(combo_kf, JP_ASTR), // *
+    COMBO(combo_lf, JP_COLN), // :
+    COMBO(combo_entf, JP_SCLN), // ;
+    COMBO(combo_cj, JP_CIRC), // ^
+    COMBO(combo_bj, JP_BSLS), // ¥
+    COMBO(combo_nf, JP_TILD), // ~
+    COMBO(combo_commF, JP_LBRC), // [
+    COMBO(combo_dotF, JP_RBRC), // ]
 };
 #endif
