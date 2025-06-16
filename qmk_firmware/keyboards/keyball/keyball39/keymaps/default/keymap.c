@@ -74,6 +74,7 @@ const uint16_t PROGMEM combo_ui[] = {KC_U, KC_I, COMBO_END};      // del
 const uint16_t PROGMEM combo_we[] = {KC_W, KC_E, COMBO_END};      // tab
 const uint16_t PROGMEM combo_sd[] = {KC_S, KC_D, COMBO_END};      // tab2
 const uint16_t PROGMEM combo_df[] = {KC_D, KC_F, COMBO_END};      // tab2
+const uint16_t PROGMEM combo_zx[] = {LSFT_T(KC_Z), KC_X, COMBO_END};      // shift
 const uint16_t PROGMEM combo_op[] = {KC_O, KC_P, COMBO_END};      // ー
 const uint16_t PROGMEM combo_jk[] = {KC_J, KC_K, COMBO_END};      // btn1
 const uint16_t PROGMEM combo_kl[] = {KC_K, KC_L, COMBO_END};      // btn2
@@ -108,6 +109,7 @@ combo_t key_combos[] = {
     COMBO(combo_we, KC_TAB), // tab
     COMBO(combo_sd, KC_TAB), // tab2
     COMBO(combo_df, KC_SPC),  // Space
+    COMBO(combo_zx, KC_LSFT), // shift
     COMBO(combo_jk, KC_BTN1), // btn1
     COMBO(combo_kl, KC_BTN2), // btn2
     COMBO(combo_jl, KC_BTN3), // btn3
