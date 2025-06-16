@@ -115,7 +115,7 @@ combo_t key_combos[] = {
     COMBO(combo_jl, KC_BTN3), // btn3
     COMBO(combo_op, JP_MINS), // -
     COMBO(combo_qj, JP_EXLM), // !
-    COMBO(combo_wj, JP_DQUO), // "
+    COMBO(combo_wj, tap_code16(JP_DQUO)), // "
     COMBO(combo_ej, JP_HASH), // #
     COMBO(combo_rj, JP_DLR), // $
     COMBO(combo_tj, JP_PERC), // %
