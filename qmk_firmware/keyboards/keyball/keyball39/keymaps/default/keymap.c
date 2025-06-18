@@ -23,8 +23,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // 左右移動と数字
   [1] = LAYOUT(
     KC_1   , KC_2     , KC_3     , KC_4     , KC_5  ,                            KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,
-    KC_LCTL    , LCTL(LGUI(KC_LEFT))  , LGUI(KC_TAB)  ,LCTL(LGUI(KC_RGHT)), LSFT(KC_8)  ,                           KC_PGUP  , KC_LEFT  , KC_UP    , KC_RGHT  , _______  ,
-    KC_LSFT, LALT(KC_LEFT),LALT(KC_TAB)   , LALT(KC_RGHT)  ,LSFT(KC_RBRC),                            KC_PGDN, KC_HOME  , KC_DOWN  ,  KC_END , KC_RSFT  ,
+    KC_LCTL    , LCTL(LGUI(KC_LEFT))  , LGUI(KC_TAB)  ,LCTL(LGUI(KC_RGHT)), LSFT(KC_8)  ,                           KC_PGUP  , KC_HOME  , KC_UP    , KC_END  , _______  ,
+    KC_LSFT, LALT(KC_LEFT),LALT(KC_TAB)   , LALT(KC_RGHT)  ,LSFT(KC_RBRC),                            KC_PGDN, KC_LEFT  , KC_DOWN  ,  KC_RGHT , KC_RSFT  ,
     KC_ESC  ,  KC_LGUI  ,KC_LALT  ,KC_LCTL,  _______    , _______  ,      _______    , _______ ,                                              _______
   ),
   // ファンクション
@@ -71,9 +71,9 @@ void oledkit_render_info_user(void) {
 const uint16_t PROGMEM combo_commDot[] = {KC_COMM, KC_DOT, COMBO_END};      // _
 const uint16_t PROGMEM combo_io[] = {KC_I, KC_O, COMBO_END};      // bs
 const uint16_t PROGMEM combo_ui[] = {KC_U, KC_I, COMBO_END};      // del
-const uint16_t PROGMEM combo_we[] = {KC_W, KC_E, COMBO_END};      // tab
-const uint16_t PROGMEM combo_sd[] = {KC_S, KC_D, COMBO_END};      // tab2
-const uint16_t PROGMEM combo_df[] = {KC_D, KC_F, COMBO_END};      // tab2
+const uint16_t PROGMEM combo_we[] = {KC_W, KC_E, COMBO_END};      // f2
+const uint16_t PROGMEM combo_sd[] = {KC_S, KC_D, COMBO_END};      // tab
+const uint16_t PROGMEM combo_df[] = {KC_D, KC_F, COMBO_END};      // Space
 const uint16_t PROGMEM combo_zx[] = {LSFT_T(KC_Z), KC_X, COMBO_END};      // shift
 const uint16_t PROGMEM combo_op[] = {KC_O, KC_P, COMBO_END};      // ー
 const uint16_t PROGMEM combo_jk[] = {KC_J, KC_K, COMBO_END};      // btn1
@@ -106,7 +106,7 @@ combo_t key_combos[] = {
     COMBO(combo_commDot, JP_UNDS), // _
     COMBO(combo_io, KC_BSPC), // bs
     COMBO(combo_ui, KC_DELETE), // del
-    COMBO(combo_we, KC_TAB), // tab
+    COMBO(combo_we, KC_F2), // f2
     COMBO(combo_sd, KC_TAB), // tab2
     COMBO(combo_df, KC_SPC),  // Space
     COMBO(combo_zx, KC_LSFT), // shift
