@@ -23,8 +23,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // 左右移動と数字
   [1] = LAYOUT(
     KC_1   , KC_2     , KC_3     , KC_4     , KC_5  ,                            KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,
-    KC_LCTL    , LCTL(LGUI(KC_LEFT))  , LGUI(KC_TAB)  ,LCTL(LGUI(KC_RGHT)), LSFT(KC_8)  ,                           KC_PGUP  , KC_HOME  , KC_UP    , KC_END  , _______  ,
-    KC_LSFT, LALT(KC_LEFT),LALT(KC_TAB)   , LALT(KC_RGHT)  ,LSFT(KC_RBRC),                            KC_PGDN, KC_LEFT  , KC_DOWN  ,  KC_RGHT , KC_RSFT  ,
+    KC_LCTL    , LCTL(LGUI(KC_LEFT))  , LGUI(KC_TAB)  ,LCTL(LGUI(KC_RGHT)), LSFT(KC_8)  ,                           KC_PGUP  , KC_LEFT  , KC_UP    , KC_RGHT  , _______  ,
+    KC_LSFT, LALT(KC_LEFT),LALT(KC_TAB)   , LALT(KC_RGHT)  ,LSFT(KC_RBRC),                            KC_PGDN, KC_HOME  , KC_DOWN  ,  KC_END , KC_RSFT  ,
     KC_ESC  ,  KC_LGUI  ,KC_LALT  ,KC_LCTL,  _______    , _______  ,      _______    , _______ ,                                              _______
   ),
   // ファンクション
