@@ -13,7 +13,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LSFT_T(KC_Z)  , KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , LT(3,KC_M)     , KC_COMM  , KC_DOT   , RSFT_T(LSFT(KC_SLSH))  ,
     KC_ESC  ,  KC_LGUI  ,KC_LALT
     // 左親指
-    ,KC_LCTL,LT(1,KC_LNG2),KC_LSFT
+    ,LCTL_T(KC_LNG2),LT(1,KC_SPC),KC_LSFT
     // 右親指
     ,LT(2,KC_SPC),LT(1,KC_LNG1)
     // 右下端
@@ -27,12 +27,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT, LALT(KC_LEFT),LALT(KC_TAB)   , LALT(KC_RGHT)  ,LSFT(KC_RBRC),                            KC_PGDN, KC_HOME  , KC_DOWN  ,  KC_END , KC_RSFT  ,
     KC_ESC  ,  KC_LGUI  ,KC_LALT  ,KC_LCTL,  _______    , _______  ,      _______    , _______ ,                                              _______
   ),
-  // ファンクション
+  // ファンクションと記号
   [2] = LAYOUT(
     KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
-    _______, _______     , _______     , _______     ,_______,                            KC_F11  , KC_F12  , _______    , _______  , _______  ,
-    _______ , _______     , _______     , _______     ,_______,                           _______, _______  , _______  ,  _______ , _______  ,
-    _______   , _______     , _______      ,_______,  _______, _______     ,      _______  , _______,                                   _______
+    _______, _______     , _______     , _______     ,_______,                            _______  , JP_DLR  , _______    , JP_COLN  , JP_SCLN  ,
+    _______ , _______     , _______     , _______     ,_______,                           JP_TILD, _______  , JP_LBRC  ,  JP_RBRC , KC_F11  ,
+    _______   , _______     , _______      ,_______,  _______, _______     ,      _______  , _______,                                   KC_F12
   ),
   [3] = LAYOUT(
     RGB_TOG  , AML_TO   , AML_I50  , AML_D50  , _______  ,                            _______  , _______  , SSNP_HOR , SSNP_VRT , SSNP_FRE ,
@@ -69,6 +69,8 @@ void oledkit_render_info_user(void) {
 
 #ifdef COMBO_ENABLE
 const uint16_t PROGMEM combo_commDot[] = {KC_COMM, KC_DOT, COMBO_END};      // _
+const uint16_t PROGMEM combo_xc[] = {KC_X, KC_C, COMBO_END};      // win
+const uint16_t PROGMEM combo_89[] = {KC_8, KC_9, COMBO_END};      // bs
 const uint16_t PROGMEM combo_io[] = {KC_I, KC_O, COMBO_END};      // bs
 const uint16_t PROGMEM combo_ui[] = {KC_U, KC_I, COMBO_END};      // del
 const uint16_t PROGMEM combo_we[] = {KC_W, KC_E, COMBO_END};      // f2
@@ -104,6 +106,8 @@ const uint16_t PROGMEM combo_dotF[] = {KC_DOT, KC_F, COMBO_END};    // ]
 
 combo_t key_combos[] = {
     COMBO(combo_commDot, JP_UNDS), // _
+    COMBO(combo_xc, KC_LWIN), // win
+    COMBO(combo_89, KC_BSPC), // bs
     COMBO(combo_io, KC_BSPC), // bs
     COMBO(combo_ui, KC_DELETE), // del
     COMBO(combo_we, KC_F2), // f2
