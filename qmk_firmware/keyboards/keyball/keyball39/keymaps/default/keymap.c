@@ -30,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ファンクションと記号
   [2] = LAYOUT(
     KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
-    _______, _______     , _______     , _______     ,_______,                            _______  , JP_DLR  , _______    , JP_COLN  , JP_SCLN  ,
+    _______, _______     , _______     , _______     ,_______,                            _______  , LSFT(JP_DLR)  , _______    , JP_COLN  , JP_SCLN  ,
     _______ , _______     , _______     , _______     ,_______,                           JP_TILD, _______  , JP_LBRC  ,  JP_RBRC , KC_F11  ,
     _______   , _______     , _______      ,_______,  _______, _______     ,      _______  , _______,                                   KC_F12
   ),
