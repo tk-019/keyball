@@ -22,15 +22,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   // 左右移動と数字
   [1] = LAYOUT(
-    KC_1   , KC_2     , KC_3     , KC_4     , KC_5  ,                            KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,
-    KC_LCTL    , LCTL(LGUI(KC_LEFT))  , LGUI(KC_TAB)  ,LCTL(LGUI(KC_RGHT)), LSFT(KC_8)  ,                           KC_PGUP  , KC_LEFT  , KC_UP    , KC_RGHT  , _______  ,
-    KC_LSFT, LALT(KC_LEFT),LALT(KC_TAB)   , LALT(KC_RGHT)  ,LSFT(KC_RBRC),                            KC_PGDN, KC_HOME  , KC_DOWN  ,  KC_END , KC_RSFT  ,
+    _______   , KC_F2     , _______     , _______     , _______  ,                            KC_PGUP  , KC_HOME  , KC_UP  , KC_END  , KC_DOWN  ,
+    KC_LCTL    , LCTL(LGUI(KC_LEFT))  , _______  ,LCTL(LGUI(KC_RGHT)), LSFT(KC_8)  ,                           _______  , KC_LEFT  , KC_DOWN    , KC_RGHT  , _______  ,
+    KC_LSFT, _______,_______   , _______  ,_______,                            _______, _______  , _______  ,  _______ , KC_RSFT  ,
     KC_ESC  ,  KC_LGUI  ,KC_LALT  ,KC_LCTL,  _______    , _______  ,      _______    , _______ ,                                              _______
   ),
   // ファンクションと記号
   [2] = LAYOUT(
+    KC_1     , KC_2     , KC_3     , KC_4     , KC_5   ,                            KC_6  , KC_7  , KC_8    , KC_9  , KC_0  ,
     KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
-    _______, _______     , _______     , _______     ,_______,                            _______  , LSFT(JP_DLR)  , _______    , JP_COLN  , JP_SCLN  ,
     _______ , _______     , _______     , _______     ,_______,                           JP_TILD, _______  , JP_LBRC  ,  JP_RBRC , KC_F11  ,
     _______   , _______     , _______      ,_______,  _______, _______     ,      _______  , _______,                                   KC_F12
   ),
