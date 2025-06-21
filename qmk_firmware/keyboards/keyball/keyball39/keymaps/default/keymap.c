@@ -17,7 +17,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // 右親指
     ,LT(2,KC_SPC),LT(1,KC_LNG1)
     // 右下端
-    , JP_YEN
+    , KC_INT1
     //, LT(3,LSFT(KC_INT1))
   ),
   // 左右移動と数字
@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [2] = LAYOUT(
     KC_1     , KC_2     , KC_3     , KC_4     , KC_5   ,                            KC_6  , KC_7  , KC_8    , KC_9  , KC_0  ,
     KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
-    _______ , _______     , _______     , _______     ,_______,                           JP_TILD, _______  , JP_LBRC  ,  JP_RBRC , KC_F11  ,
+    _______ , _______     , _______     , _______     ,_______,                           _______, _______  , _______  ,  _______ , KC_F11  ,
     _______   , _______     , _______      ,_______,  _______, _______     ,      _______  , _______,                                   KC_F12
   ),
   [3] = LAYOUT(
