@@ -11,9 +11,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
     LCTL_T(KC_A)     , KC_S     , KC_D     , KC_F     , KC_G     ,                            KC_H     , KC_J     , KC_K     , KC_L     , KC_ENT  ,
     LSFT_T(KC_Z)  , KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , LT(3,KC_M)     , KC_COMM  , KC_DOT   , RSFT_T(LSFT(KC_SLSH))  ,
-    KC_ESC  ,  KC_LGUI  ,KC_LALT
+    KC_ESC  ,  KC_LALT  ,KC_LCTL
     // 左親指
-    ,KC_LCTL,LT(1,KC_LNG2),KC_LSFT
+    ,LT(1,KC_LNG2),KC_SPC,KC_LSFT
     // 右親指
     ,LT(2,KC_SPC),LT(1,KC_LNG1)
     // 右下端
@@ -81,6 +81,7 @@ const uint16_t PROGMEM combo_op[] = {KC_O, KC_P, COMBO_END};      // ー
 const uint16_t PROGMEM combo_jk[] = {KC_J, KC_K, COMBO_END};      // btn1
 const uint16_t PROGMEM combo_kl[] = {KC_K, KC_L, COMBO_END};      // btn2
 const uint16_t PROGMEM combo_jl[] = {KC_J, KC_L, COMBO_END};      // btn3
+const uint16_t PROGMEM combo_hj[] = {KC_H, KC_J, COMBO_END};      // btn4
 const uint16_t PROGMEM combo_qj[] = {KC_Q, KC_J, COMBO_END};      // !
 const uint16_t PROGMEM combo_wj[] = {KC_W, KC_J, COMBO_END};      // "
 const uint16_t PROGMEM combo_ej[] = {KC_E, KC_J, COMBO_END};      // #
@@ -117,6 +118,7 @@ combo_t key_combos[] = {
     COMBO(combo_jk, KC_BTN1), // btn1
     COMBO(combo_kl, KC_BTN2), // btn2
     COMBO(combo_jl, KC_BTN3), // btn3
+    COMBO(combo_hj, KC_BTN4), // btn4
     COMBO(combo_op, JP_MINS), // -
     COMBO(combo_qj, JP_EXLM), // !
     COMBO(combo_wj, JP_DQUO), // "
