@@ -23,9 +23,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // 左右移動と数字
   [1] = LAYOUT(
     _______   , KC_F2     , _______     , _______     , _______  ,                            KC_PGUP  , KC_HOME  , KC_UP  , KC_END  , KC_DOWN  ,
-    KC_LCTL    , LCTL(LGUI(KC_LEFT))  , _______  ,LCTL(LGUI(KC_RGHT)), LSFT(KC_8)  ,                           _______  , KC_LEFT  , KC_DOWN    , KC_RGHT  , _______  ,
+    KC_LCTL    , LCTL(LGUI(KC_LEFT))  , _______  ,LCTL(LGUI(KC_RGHT)), _______  ,                           _______  , KC_LEFT  , KC_DOWN    , KC_RGHT  , _______  ,
     KC_LSFT, _______,_______   , _______  ,_______,                            _______, _______  , _______  ,  _______ , KC_RSFT  ,
-    KC_ESC  ,  KC_LGUI  ,KC_LALT  ,KC_LCTL,  _______    , _______  ,      _______    , _______ ,                                              _______
+    _______  ,  _______  ,_______  ,_______,  _______    , _______  ,      _______    , _______ ,                                              _______
   ),
   // ファンクションと記号
   [2] = LAYOUT(
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RGB_TOG  , AML_TO   , AML_I50  , AML_D50  , _______  ,                            _______  , _______  , SSNP_HOR , SSNP_VRT , SSNP_FRE ,
     KC_LCTL  , RGB_HUI  , RGB_SAI  , RGB_VAI  , SCRL_DVI ,                            _______  , _______  , _______  , _______  , _______  ,
     KC_LSFT , RGB_HUD  , RGB_SAD  , RGB_VAD  , SCRL_DVD ,                            CPI_D1K  , CPI_D100 , CPI_I100 , CPI_I1K  , KC_RSFT ,
-    KC_ESC  , KC_LGUI  , KC_LALT  , _______  , _______  , _______  ,      _______  , _______                                   , QK_BOOT
+    _______  , _______  , _______  , _______  , _______  , _______  ,      _______  , _______                                   , QK_BOOT
   ),
   // [4] = LAYOUT(
   //   KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    ,                            KC_LNG1  , KC_7     , KC_8     , KC_9     , KC_BSPC  ,
